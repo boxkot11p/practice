@@ -9,12 +9,13 @@ import (
 type Mission struct {
 	MissionID                         string `spanner:"MissionID"`
 	OrderConditionMissionID           string `spanner:"OrderConditionMissionID"`
-	GiftItemID                        int64  `spanner:"GiftItemID"`
-	Name                              int64  `spanner:"Name"`
+	GiftItemID                        string `spanner:"GiftItemID"`
+	Name                              string `spanner:"Name"`
+	Category                          string `spanner:"Category"`
 	ResetCycle                        string `spanner:"ResetCycle"`
 	ResetWeek                         string `spanner:"ResetWeek"`
-	ResetHour                         int    `spanner:"ResetHour"`
-	ResetTime                         int    `spanner:"ResetTime"`
+	ResetHour                         int64  `spanner:"ResetHour"`
+	ResetTime                         int64  `spanner:"ResetTime"`
 	ConditionLevelMonsterID           string `spanner:"ConditionLevelMonsterID"`
 	ConditionLevel                    int64  `spanner:"ConditionLevel"`
 	ConditionLevelHaveMonsterNumber   int64  `spanner:"ConditionLevelHaveMonsterNumber"`

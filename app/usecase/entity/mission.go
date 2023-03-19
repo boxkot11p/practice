@@ -11,9 +11,9 @@ import (
 type Mission struct {
 	MissionID                         string
 	OrderConditionMissionID           string
-	GiftItemID                        int64
+	GiftItemID                        string
 	Category                          value.MissionCategory
-	Name                              int64
+	Name                              string
 	ResetCycle                        string
 	ResetWeek                         string
 	ResetHour                         int
@@ -37,7 +37,11 @@ func (m Mission) ResetStartTime(at time.Time) (time.Time, error) {
 	case "NONE":
 		return time.Time{}, nil
 	case "DAILY":
-		return time.Date(at.Year(), at.Month(), at.Day(), m.ResetHour, m.ResetTime, 0, 0, at.Location()), nil
+		day := at.Day()
+		if m.ResetHour >= at.Hour() && m.ResetTime >= at.Minute() {
+			day = at.Day() - 1
+		}
+		return time.Date(at.Year(), at.Month(), day, m.ResetHour, m.ResetTime, 0, 0, time.UTC), nil
 	case "WEEKLY":
 		wdays := map[string]int{
 			"SUNDAY":    int(time.Sunday),
@@ -53,7 +57,7 @@ func (m Mission) ResetStartTime(at time.Time) (time.Time, error) {
 			return time.Time{}, fmt.Errorf("not match reset week: %s", m.ResetWeek)
 		}
 		d := int(math.Abs(float64(w - int(at.Weekday()))))
-		return time.Date(at.Year(), at.Month(), at.Day()-d, m.ResetHour, m.ResetTime, 0, 0, at.Location()), nil
+		return time.Date(at.Year(), at.Month(), at.Day()-d, m.ResetHour, m.ResetTime, 0, 0, time.UTC), nil
 	default:
 		return time.Time{}, fmt.Errorf("not match reset cycle: %s", m.ResetCycle)
 	}

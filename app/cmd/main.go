@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"os/signal"
@@ -41,6 +42,7 @@ func main() {
 	interruptCh := make(chan os.Signal, 1)
 	signal.Notify(interruptCh, syscall.SIGTERM)
 	go func() {
+		log.Default().Println("start gRPC")
 		if err := s.Serve(listener); err != nil {
 			errCh <- err
 		}

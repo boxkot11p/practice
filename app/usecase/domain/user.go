@@ -38,7 +38,7 @@ func (u user) GetUser() *entity.User {
 	return u.u
 }
 
-func (u user) AchievementLogin(
+func (u *user) AchievementLogin(
 	ms []*entity.Mission,
 	umas []*entity.UserMissionAchievement,
 	at int64,
@@ -81,7 +81,7 @@ func (u user) AchievementLevel(
 	return u.achievement(fms, umas, nil, at)
 }
 
-func (u user) achievement(
+func (u *user) achievement(
 	ms []*entity.Mission,
 	umas []*entity.UserMissionAchievement,
 	ubhs []*entity.UserBattleHistory,
@@ -100,11 +100,13 @@ func (u user) achievement(
 				return nil, err
 			}
 			if ok {
-				results = append(results, &entity.UserMissionAchievement{
+				uma := &entity.UserMissionAchievement{
 					UserID:    u.u.UserID,
 					MissionID: v.MissionID,
 					CreatedAt: at,
-				})
+				}
+				results = append(results, uma)
+				umas = append(umas, uma)
 				u.u.AddCoin(v.GiftCoin)
 			}
 		}

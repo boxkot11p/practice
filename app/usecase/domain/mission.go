@@ -59,23 +59,23 @@ func (m mission) isSkip(umas []*entity.UserMissionAchievement) bool {
 			}
 		}
 		if !ok {
-			return false
+			return true
 		}
 	}
 
 	// NOTE: 達成済みの場合はSKIP
 	for _, v := range umas {
 		if v.MissionID == m.MissionID {
-			return false
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 func (m mission) filterResetData(at int64) ([]*entity.UserMissionAchievement, []*entity.UserBattleHistory, error) {
 	umas := []*entity.UserMissionAchievement{}
 	ubhs := []*entity.UserBattleHistory{}
-	now := time.Unix(at, 0)
+	now := time.Unix(at, 0).UTC()
 	resetTime, err := m.Mission.ResetStartTime(now)
 	if err != nil {
 		return nil, nil, err

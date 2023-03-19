@@ -20,7 +20,7 @@ func replaceUserMonsterMutations(ctx context.Context, ums []*UserMonster) ([]*sp
 		if v.UserMonsterID == "" {
 			v.UserMonsterID = uuid.New().String()
 		}
-		s, err := spanner.InsertOrUpdateStruct("UserMissionAchievement", v)
+		s, err := spanner.InsertOrUpdateStruct("UserMonster", v)
 		if err != nil {
 			return nil, err
 		}

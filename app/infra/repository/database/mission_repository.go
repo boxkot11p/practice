@@ -5,6 +5,7 @@ import (
 
 	"cloud.google.com/go/spanner"
 	"practice.dev/usecase/entity"
+	"practice.dev/usecase/entity/value"
 	"practice.dev/usecase/repository"
 )
 
@@ -30,10 +31,11 @@ func (r MissionRepository) FindAll(ctx context.Context) ([]*entity.Mission, erro
 			OrderConditionMissionID:           v.OrderConditionMissionID,
 			GiftItemID:                        v.GiftItemID,
 			Name:                              v.Name,
+			Category:                          value.MissionCategory(v.Category),
 			ResetCycle:                        v.ResetCycle,
 			ResetWeek:                         v.ResetWeek,
-			ResetHour:                         v.ResetHour,
-			ResetTime:                         v.ResetTime,
+			ResetHour:                         int(v.ResetHour),
+			ResetTime:                         int(v.ResetTime),
 			ConditionLevelMonsterID:           v.ConditionLevelMonsterID,
 			ConditionLevel:                    v.ConditionLevel,
 			ConditionLevelHaveMonsterNumber:   v.ConditionLevelHaveMonsterNumber,
