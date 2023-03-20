@@ -50,12 +50,12 @@ CREATE TABLE UserMissionAchievement (
   UserMissionAchievementID STRING(MAX) NOT NULL,
   UserID STRING(MAX) NOT NULL,
   MissionID STRING(MAX) NOT NULL,
-  CreatedAt TIMESTAMP NOT NULL OPTIONS (allow_commit_timestamp=true)
+  CreatedAt TIMESTAMP NOT NULL
 ) PRIMARY KEY (UserMissionAchievementID);
 
 CREATE TABLE UserBattleHistory (
-  UserActionHistoryID STRING(MAX) NOT NULL,
+  UserBattleHistoryID STRING(MAX) NOT NULL,
   UserID STRING(MAX) NOT NULL,
   MonsterID STRING(MAX),
-  CreatedAt INT64 NOT NULL
-) PRIMARY KEY (UserActionHistoryID);;
+  CreatedAt TIMESTAMP NOT NULL
+) PRIMARY KEY (UserBattleHistoryID);;

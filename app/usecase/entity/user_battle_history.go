@@ -1,7 +1,7 @@
 package entity
 
 type UserBattleHistory struct {
-	UserActionHistoryID string
+	UserBattleHistoryID string
 	UserID              string
 	MonsterID           string
 	CreatedAt           int64

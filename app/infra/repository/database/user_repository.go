@@ -77,7 +77,7 @@ func (r UserRepository) FindBattleHistoryByUserID(ctx context.Context, userID st
 	results := []*entity.UserBattleHistory{}
 	for _, v := range ubhs {
 		results = append(results, &entity.UserBattleHistory{
-			UserActionHistoryID: v.UserActionHistoryID,
+			UserBattleHistoryID: v.UserBattleHistoryID,
 			UserID:              v.UserID,
 			MonsterID:           v.MonsterID,
 			CreatedAt:           v.CreatedAt.Unix(),

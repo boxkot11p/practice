@@ -13,6 +13,9 @@ func (u *User) AddCoin(c int64) {
 }
 
 func (u *User) AddItem(itemID string) {
+	if itemID == "" {
+		return
+	}
 	u.Items = append(u.Items, &Item{
 		ItemID: itemID,
 	})

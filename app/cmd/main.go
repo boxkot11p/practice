@@ -19,10 +19,12 @@ import (
 
 func main() {
 	ctx := context.Background()
-	if err := os.Setenv("SPANNER_EMULATOR_HOST", "localhost:9010"); err != nil {
-		panic(err)
+	d := "projects/mission-project/instances/mission-instance/databases/mission-database"
+	if os.Getenv("SPANNER_EMULATOR_HOST") == "" {
+		if err := os.Setenv("SPANNER_EMULATOR_HOST", "localhost:9010"); err != nil {
+			panic(err)
+		}
 	}
-	d := "projects/test-project/instances/test-instance/databases/test-database"
 	cli, err := spanner.NewClient(ctx, d)
 	if err != nil {
 		panic(err)

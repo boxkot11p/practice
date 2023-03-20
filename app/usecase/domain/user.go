@@ -38,7 +38,7 @@ func (u user) GetUser() *entity.User {
 	return u.u
 }
 
-func (u *user) AchievementLogin(
+func (u user) AchievementLogin(
 	ms []*entity.Mission,
 	umas []*entity.UserMissionAchievement,
 	at int64,
@@ -108,6 +108,7 @@ func (u *user) achievement(
 				results = append(results, uma)
 				umas = append(umas, uma)
 				u.u.AddCoin(v.GiftCoin)
+				u.u.AddItem(v.GiftItemID)
 			}
 		}
 		// NOTE: ミッション達成で他ミッションに影響を与える可能性があるため達成時は再度ミッションをチェック

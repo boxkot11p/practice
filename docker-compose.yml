@@ -1,9 +1,8 @@
-version: '3'
+version: '3.9'
 services:
-
-    # Spanner
     spanner:
      image: gcr.io/cloud-spanner-emulator/emulator:1.2.0
+     container_name: spanner
      ports:
          - "9010:9010"
          - "9020:9020"
@@ -16,19 +15,45 @@ services:
                gcloud config set project $${PROJECT_ID} &&
                gcloud config set api_endpoint_overrides/spanner $${SPANNER_EMULATOR_URL} &&
                gcloud config set auth/disable_credentials true &&
+               gcloud spanner instances delete $${INSTANCE_NAME}
                gcloud spanner instances create $${INSTANCE_NAME} --config=emulator-config --description=Emulator --nodes=1
                gcloud spanner databases create $${DATABASE_NAME} --instance=$${INSTANCE_NAME} --ddl-file=ddl/schema.sql'
       environment:
-        PROJECT_ID: "test-project"
+        PROJECT_ID: "mission-project"
         SPANNER_EMULATOR_URL: "http://spanner:9020/"
-        INSTANCE_NAME: "test-instance"
-        DATABASE_NAME: "test-database"
+        INSTANCE_NAME: "mission-instance"
+        DATABASE_NAME: "mission-database"
       volumes:
         - ./migrations/ddl:/ddl
+      depends_on:
+        - spanner
+
+    spanner-init-data:
+      image: sjdaws/spanner-cli:v1.0.0
+      command: bash -c 'spanner-cli -p $${PROJECT_ID} -i $${INSTANCE_NAME} -d $${DATABASE_NAME} < /seed/seed.sql'
+      environment:
+        SPANNER_EMULATOR_HOST: "spanner:9010"
+        PROJECT_ID: "mission-project"
+        INSTANCE_NAME: "mission-instance"
+        DATABASE_NAME: "mission-database"
+      volumes:
         - ./migrations/seed:/seed
+      depends_on:
+        gcloud-spanner-init:
+          condition: service_completed_successfully
 
     spanner-cli:
       image: sjdaws/spanner-cli:v1.0.0
+      command: ['sh', '-c', 'echo this container keep running && tail -f /dev/null']
       environment:
         SPANNER_EMULATOR_HOST: "spanner:9010"
-      command: ['sh', '-c', 'echo this container keep running && tail -f /dev/null']
+
+    application:
+      build:
+        context: app
+      ports:
+        - 9000:9000
+      environment:
+        SPANNER_EMULATOR_HOST: "spanner:9010"
+      depends_on:
+        - spanner

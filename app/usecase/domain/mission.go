@@ -76,7 +76,7 @@ func (m mission) filterResetData(at int64) ([]*entity.UserMissionAchievement, []
 	umas := []*entity.UserMissionAchievement{}
 	ubhs := []*entity.UserBattleHistory{}
 	now := time.Unix(at, 0).UTC()
-	resetTime, err := m.Mission.ResetStartTime(now)
+	resetTime, err := m.ResetStartTime(now)
 	if err != nil {
 		return nil, nil, err
 	}

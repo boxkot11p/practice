@@ -5,16 +5,18 @@ import (
 	"time"
 
 	"cloud.google.com/go/spanner"
+	"github.com/google/uuid"
 )
 
 type UserBattleHistory struct {
-	UserActionHistoryID string    `spanner:"UserActionHistoryID"`
+	UserBattleHistoryID string    `spanner:"UserBattleHistoryID"`
 	UserID              string    `spanner:"UserID"`
 	MonsterID           string    `spanner:"MonsterID"`
 	CreatedAt           time.Time `spanner:"CreatedAt"`
 }
 
 func createUserBattleHistoryMutation(ctx context.Context, ubh *UserBattleHistory) (*spanner.Mutation, error) {
+	ubh.UserBattleHistoryID = uuid.New().String()
 	return spanner.InsertStruct("UserBattleHistory", ubh)
 }
 

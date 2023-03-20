@@ -59,3 +59,28 @@ VALUES
 ('8469eaf3-d0ad-bee3-4891-3b8dafad6b02', "", "", '任意のモンスターを10回倒す', "BATTLE", 'WEEKLY', 'MONDAY', 0, 0, "", 0, 0, "", "", 10, 0, 100),
 ('90d49481-bfa4-296a-8841-1f58b101ddc5', "", "", 'ログイン', "LOGIN", 'DAILY', "", 4, 0, "", 0, 0, "", "", 0, 0, 100),
 ('ef63a85a-f120-f511-52e8-627c72aed692', '0225de9e-9589-b026-251b-daa523c8731b', "", 'アイテムAを所有する', "ITEM", 'NONE', "", 0, 0, "", 0, 0, '1f295f46-0cb9-fdc0-9124-853c0e4881a2', "", 0, 0, 100);
+
+INSERT INTO UserMissionAchievement(
+  UserMissionAchievementID,
+  UserID,
+  MissionID,
+  CreatedAt
+)
+VALUES
+('c30739be-0b81-d3b2-7557-c86a62f43727', 'b5f836df-acbe-422e-393d-31b570fd2403', '90d49481-bfa4-296a-8841-1f58b101ddc5', '2023-03-17T18:00:00Z');
+
+INSERT INTO UserBattleHistory(
+  UserBattleHistoryID,
+  UserID,
+  MonsterID,
+  CreatedAt
+)
+VALUES
+('abc75d57-24ce-9e04-abe5-0a9018843ef0', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('851b3a73-15ea-2923-77ab-f4fc95d208e3', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('4059ddb8-2c9c-5639-ba45-318b154b5c50', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('49d8f231-dc16-dfee-3553-6a25b4f6230e', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('788a5aab-6bbd-7400-52f1-87e2bde7fdf8', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('c482bcf3-ef4e-6ba3-fa69-2529e0116037', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('cc858d5c-0db5-8739-6653-a1efe7652fa8', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z'),
+('b49ef445-0c7b-ef3e-dad4-494683f0a240', 'b5f836df-acbe-422e-393d-31b570fd2403', 'b0ecc978-f30b-6757-0816-5a4badfe67ff', '2023-03-17T18:00:00Z');
