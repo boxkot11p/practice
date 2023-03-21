@@ -1,3 +1,22 @@
+## プログラムの簡単な説明
+
+- 起動プログラム
+  - https://github.com/boxkot11p/practice/blob/main/app/cmd/main.go
+- grpc apiのhandler
+  - https://github.com/boxkot11p/practice/tree/main/app/infra/handler
+- grpc apiのprotoファイル
+  - https://github.com/boxkot11p/practice/blob/main/app/proto/api/service.proto
+- usecaseについて
+  - https://github.com/boxkot11p/practice/tree/main/app/usecase
+  - serviceで単体のusecaseを定義
+  - domainとentityはserviceから利用されるEntity
+    - domainは対象ドメインのロジックを記載
+    - entityは操作対象のデータの情報と値のロジックを記載
+  - repositoryはinfra操作の抽象
+- repositoryについて
+  - https://github.com/boxkot11p/practice/tree/main/app/infra/repository/database
+  - databaseとのやり取りをしている
+
 ## ミッションの拡張に関しての観点
 
 - ミッションの種類の追加のしやすさをするために下記の観点で実装しました
@@ -19,7 +38,7 @@
     DBとUseCaseでは利用する値は似ていますが使われる目的が全く違うので分けています
 
     上記を行うことでDBの制約に引っ張られることなくEntityを定義でき、かつRepository層でDIが出来るので変換に関する知識が凝集されます
-    
+
     仮にEntityの値を抽象化したいという場合はRepository層で変換を行えばいいということです
     上記が正解かはわかりませんが、知識はどこかで凝集することで結合度は低くなると考えています
     - 対象package
