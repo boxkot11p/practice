@@ -79,7 +79,8 @@ func (r UserRepository) FindBattleHistoryByUserID(ctx context.Context, userID st
 		results = append(results, &entity.UserBattleHistory{
 			UserBattleHistoryID: v.UserBattleHistoryID,
 			UserID:              v.UserID,
-			MonsterID:           v.MonsterID,
+			MyMonsterID:         v.MyMonsterID,
+			OpponentMonsterID:   v.OpponentMonsterID,
 			CreatedAt:           v.CreatedAt.Unix(),
 		})
 	}
@@ -126,9 +127,10 @@ func (r UserRepository) Update(
 	var ubhds *UserBattleHistory
 	if ubhs != nil {
 		ubhds = &UserBattleHistory{
-			UserID:    ubhs.UserID,
-			MonsterID: ubhs.MonsterID,
-			CreatedAt: time.Unix(ubhs.CreatedAt, 0),
+			UserID:            ubhs.UserID,
+			MyMonsterID:       ubhs.MyMonsterID,
+			OpponentMonsterID: ubhs.OpponentMonsterID,
+			CreatedAt:         time.Unix(ubhs.CreatedAt, 0),
 		}
 	}
 

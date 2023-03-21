@@ -57,3 +57,4 @@ services:
         SPANNER_EMULATOR_HOST: "spanner:9010"
       depends_on:
         - spanner
+        

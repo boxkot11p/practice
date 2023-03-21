@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 土曜の午後10時にログイン(2023/3/18)
 grpcurl -plaintext -d \
 '{

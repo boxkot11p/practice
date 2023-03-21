@@ -11,7 +11,8 @@ import (
 type UserBattleHistory struct {
 	UserBattleHistoryID string    `spanner:"UserBattleHistoryID"`
 	UserID              string    `spanner:"UserID"`
-	MonsterID           string    `spanner:"MonsterID"`
+	MyMonsterID         string    `spanner:"MyMonsterID"`
+	OpponentMonsterID   string    `spanner:"OpponentMonsterID"`
 	CreatedAt           time.Time `spanner:"CreatedAt"`
 }
 

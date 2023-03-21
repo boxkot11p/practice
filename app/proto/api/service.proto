@@ -22,8 +22,9 @@ message LoginResponse {
 
 message BattleRequest {
   string userID = 1;
-  string opponentMonsterID = 2;
-  int64 createdAt = 3;
+  string myMonsterID = 2;
+  string opponentMonsterID = 3;
+  int64 createdAt = 4;
 };
 
 message BattleResponse {

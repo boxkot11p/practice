@@ -56,6 +56,7 @@ CREATE TABLE UserMissionAchievement (
 CREATE TABLE UserBattleHistory (
   UserBattleHistoryID STRING(MAX) NOT NULL,
   UserID STRING(MAX) NOT NULL,
-  MonsterID STRING(MAX),
+  MyMonsterID STRING(MAX) NOT NULL,
+  OpponentMonsterID STRING(MAX) NOT NULL,
   CreatedAt TIMESTAMP NOT NULL
 ) PRIMARY KEY (UserBattleHistoryID);;

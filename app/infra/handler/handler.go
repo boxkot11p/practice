@@ -16,9 +16,10 @@ func (s Server) Login(ctx context.Context, req *api.LoginRequest) (*api.LoginRes
 
 func (s Server) Battle(ctx context.Context, req *api.BattleRequest) (*api.BattleResponse, error) {
 	ubh := &entity.UserBattleHistory{
-		UserID:    req.UserID,
-		MonsterID: req.OpponentMonsterID,
-		CreatedAt: req.CreatedAt,
+		UserID:            req.UserID,
+		MyMonsterID:       req.MyMonsterID,
+		OpponentMonsterID: req.OpponentMonsterID,
+		CreatedAt:         req.CreatedAt,
 	}
 	if err := s.actionService.Battle(ctx, ubh); err != nil {
 		return nil, err

@@ -39,7 +39,7 @@ func (m missionBattle) IsAchievement(_ *entity.User, at int64) (bool, error) {
 func (m missionBattle) isAchievementSpecifiedBattle(ubhs []*entity.UserBattleHistory) bool {
 	monsterID := m.Mission.ConditionTargetMonsterID
 	for _, v := range ubhs {
-		if monsterID == v.MonsterID {
+		if monsterID == v.OpponentMonsterID {
 			return true
 		}
 	}
